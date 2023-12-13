@@ -21,8 +21,8 @@ public class UsuarioController {
 	@GetMapping
 	public ModelAndView usuario() {
 		ModelAndView modelAndView = new ModelAndView("views/usuarios/index.html");
+		
 		modelAndView.addObject("usuarios", usuarioRepository.findAll());
-
 		modelAndView.addObject("usuario", new Usuarios());
 
 		return modelAndView;

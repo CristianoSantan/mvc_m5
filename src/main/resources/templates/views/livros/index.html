@@ -14,29 +14,30 @@
 <body>
 	<main>
 		<header class="header">
-			<h1>livros</h1>
+			<h1>Livros</h1>
 		</header>
 
 		<ul class="nav justify-content-center">
 			<li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="">Home</a>
+				<a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{/usuarios}">Usuarios</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/livros}">livros</a>
+				<a class="nav-link" th:href="@{/livros}">Livros</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/compras}">compras</a>
+				<a class="nav-link" th:href="@{/compras}">Compras</a>
 			</li>
 		</ul>
 
 		<section class="container">
 
 			<div class="p-4">
-				<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary mb-2 botao1"> Novo
-					Livro </button>
+				<button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary mb-2 botao1"> 
+					Novo Livro 
+				</button>
 
 				<table class="table table-responsive table-hover">
 					<thead class="table-dark">
@@ -52,70 +53,66 @@
 					<tbody>
 						<tr th:each="l : ${livros}">
 							<td th:text="${l.id}"></td>
-							<td th:text="${l.autor}" class="name"></td>
+							<td th:text="${l.autor}"></td>
 							<td th:text="${l.editora}"></td>
 							<td th:text="${l.nome}"></td>
 							<td th:text="${l.preco}"></td>
 							<td>
 								<div class="d-flex">
-									<!-- <a th:href="@{'/livros'}" data-bs-toggle="modal"
-										th:data-bs-target="'#exampleModal' + ${u.id}" class="mx-1" title="Editar">
+									<a th:href="@{'/livros'}" data-bs-toggle="modal"
+										th:data-bs-target="'#exampleModal' + ${l.id}" class="mx-1" title="Editar">
 										<i class="ri-file-edit-line"></i>
 									</a>
-									<a th:href="@{'/livros/' + ${u.id} + '/excluir'}" class="mx-1" title="Cancelar"
+									<a th:href="@{'/livros/' + ${l.id} + '/excluir'}" class="mx-1" title="Deletar"
 										onclick="return confirm('Deseja excluir o usuario ?')">
 										<i class="ri-delete-bin-2-line"></i>
-									</a> -->
+									</a>
 									
 									<!-- Modal -->
-									<!-- <div class="modal fade" th:id="'exampleModal' + ${u.id}" tabindex="-1"
+									<div class="modal fade" th:id="'exampleModal' + ${l.id}" tabindex="-1"
 										aria-labelledby="exampleModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
-														title</h1>
-													<button type="button" class="btn-close" data-bs-dismiss="modal"
-														aria-label="Close"></button>
+													<h1 class="modal-title fs-5" id="exampleModalLabel"> Atualizar </h1>
+													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
-													<form th:action="@{/livros/cadastrar}" method="post"
-														th:object="${usuario}">
-														<h2 class="text-center">Atualizar</h2>
-														<input type="hidden" id="id" name="id" class="form-control"
-															th:value="${u.id}" />
+													<form th:action="@{/livros/cadastrar}" method="post" th:object="${usuario}">
+
+														<input type="hidden" id="id" name="id" class="form-control" th:value="${l.id}" />
 														<div class="form-group mb-3">
 															<label for="nome" class="form-label">
 																Nome
 															</label>
-															<input type="text" id="nome" name="nome"
-																class="form-control" th:value="${u.nome}" />
+															<input type="text" id="nome" name="nome" class="form-control" th:value="${l.nome}" />
 														</div>
-
 														<div class="form-group mb-3">
 															<label for="email" class="form-label">
-																Email
+																Autor
 															</label>
-															<input type="email" id="email" name="email"
-																class="form-control" th:value="${u.email}" />
+															<input type="text" id="autor" name="autor" class="form-control" th:value="${l.autor}" />
+														</div>
+														<div class="form-group mb-3">
+															<label for="email" class="form-label">
+																Editora
+															</label>
+															<input type="text" id="editora" name="editora" class="form-control" th:value="${l.editora}" />
 														</div>
 														<div class="form-group mb-3">
 															<label for="senha" class="form-label">
-																Senha
+																Preço
 															</label>
-															<input type="password" id="senha" name="senha"
-																class="form-control" th:value="${u.senha}" />
+															<input type="number" id="preco" name="preco" class="form-control" step="0.01" th:value="${l.preco}" />
 														</div>
-
-
+											
 														<button type="submit" class="btn btn-primary">
 															Enviar
 														</button>
-														<a href="./livros" class="btn btn-danger"
-															style="margin-left: 10px">
+														<a href="livros" class="btn btn-danger" style="margin-left: 10px">
 															Cancelar
 														</a>
-													</form> -->
+													</form>
 												</div>
 
 											</div>
@@ -136,13 +133,11 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
-							title</h1>
+						<h1 class="modal-title fs-5" id="exampleModalLabel"> Cadastrar </h1>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<form th:action="@{/livros/cadastrar}" method="post" th:object="${livro}">
-							<h2 class="text-center">Atualizar</h2>
 				            <input type="hidden" id="id" name="id" class="form-control" value="" />
 				            <div class="form-group mb-3">
 				                <label for="nome" class="form-label">
@@ -150,7 +145,6 @@
 				                </label>
 				                <input type="text" id="nome" name="nome" class="form-control" value="" />
 				            </div>
-				            
 				            <div class="form-group mb-3">
 				                <label for="email" class="form-label">
 				                    Autor
@@ -163,7 +157,6 @@
 				                </label>
 				                <input type="text" id="editora" name="editora" class="form-control" value="" />
 				            </div>
-				            
 				            <div class="form-group mb-3">
 				                <label for="senha" class="form-label">
 				                    Preço

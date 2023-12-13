@@ -21,8 +21,8 @@ public class LivrosController {
 	@GetMapping
 	public ModelAndView livros() {
 		ModelAndView modelAndView = new ModelAndView("views/livros/index.html");
+		
 		modelAndView.addObject("livros", livrosRepository.findAll());
-
 		modelAndView.addObject("livro", new Livros());
 
 		return modelAndView;
