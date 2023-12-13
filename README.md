@@ -1,6 +1,8 @@
 
 # Aviso ⚠
 
+*ComprasController.java*
+```
 // Aviso: Removido parâmetro desnecessário
 // O parâmetro "ModelMap model" foi removido do método "cadastrar" porque não está sendo usado para adicionar atributos à camada de visualização (pagina html).
 // Se futuramente for necessário adicionar dados à camada de visualização, o parâmetro e as linhas correspondentes podem ser reintroduzidos.
@@ -12,4 +14,4 @@ public String cadastrar(@ModelAttribute("compras") Compras compras) {
 
     return "redirect:/compras";
 }
-
+```
